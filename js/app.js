@@ -4,5 +4,5 @@ import Hello from './hello';
 import ReactDOM from 'react-dom';
 
 
-ReactDOM.render(<Hello />, document.body);
+ReactDOM.render(<Hello />, document.getElementById("app"));
 
