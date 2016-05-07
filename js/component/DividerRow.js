@@ -7,7 +7,7 @@ export default class DividerRow extends React.Component {
         const styles = {
             div : {
                 width:'100%',
-                height:15,
+                height:12,
                 background:'#f0f0f0'
             }
         };

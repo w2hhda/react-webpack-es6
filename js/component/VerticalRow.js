@@ -1,6 +1,3 @@
-/**
- * Created by holder on 2016/4/30.
- */
 import React from 'react';
 import CollapseRow from './CollapseRow';
 
@@ -10,7 +7,7 @@ class VerticalRow extends React.Component {
     constructor() {
         super();
         this.state = {
-            collapse: false
+            collapse: true
         };
     }
 
@@ -18,9 +15,11 @@ class VerticalRow extends React.Component {
 
         let cLen = this.props.children.length;
         let show = this.props.children;
-        let hasCollapseRow = false;
+        let hasCollapseRow = true;
         if (cLen > 8) {
             hasCollapseRow = true;
+        } else {
+            hasCollapseRow = false;
         }
 
         if (hasCollapseRow && this.state.collapse) {
@@ -65,7 +64,7 @@ class VerticalRow extends React.Component {
     handleClick(e, states) {
         e.preventDefault();
         this.setState({
-            collapse: states
+            collapse: !states
         });
     }
 

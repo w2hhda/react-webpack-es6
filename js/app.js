@@ -1,8 +1,13 @@
-
 import React from 'react';
-import Hello from './hello';
+import YellowPages from './yellowpages';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 
+ReactDOM.render(
+    <Provider store={store}>
+        {() => <YellowPages />}
+    </Provider>
+    ,
+    document.getElementById("app"));
 
-ReactDOM.render(<Hello />, document.getElementById("app"));
 

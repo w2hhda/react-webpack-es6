@@ -11,10 +11,8 @@ export default class BannerRow extends React.Component {
         };
     }
 
-    handleChange() {
-        this.setState({
-            slideIndex: value,
-        });
+    handleChange(index, fromIndex) {
+        console.log("current position >%s %s", index, fromIndex);
     };
 
     render() {
@@ -22,7 +20,7 @@ export default class BannerRow extends React.Component {
         const styles = {
             img: {
                 width: '100%',
-                height: 150,
+                height: 100,
                 background: 'no-repeat'
             }
         };
@@ -34,33 +32,26 @@ export default class BannerRow extends React.Component {
         ];
 
 
-        /*return (
-         <div>
-         <SwipeableViews
-         index={this.state.slideIndex}
-         /!*onChangeIndex={(value) => this.handleChange(value)}*!/
-         >
-         {banners.map(function (banner) {
-         const bannerStyleImg = {background: 'url(' + banner.i + ')'};
-         const bannerStyle = Object.assign({}, styles.img, bannerStyleImg);
-         return <div key={banner.i} style={bannerStyle}></div>;
-         })}
-         </SwipeableViews>
-         </div>
-         );*/
-
         return (
-            <div>
-                <ReactSwipe className="carousel" swipeOptions={{continuous: false}}
-                >
-                    {
-                        banners.map(banner => {
-                            const bannerStyleImg = {background: 'url(' + banner.i + ')'};
-                            return <div key={banner.i} style={Object.assign({}, styles.img, bannerStyleImg)}></div>;
-                        })
-                    }
-                </ReactSwipe>
-            </div>
+            <SwipeableViews
+                index={this.state.slideIndex}
+                resistance={true}
+                onChangeIndex={(index, fromIndex) => this.handleChange(index, fromIndex)}
+            >
+                {banners.map(function (banner) {
+                    const bannerStyleImg = {background: 'url(' + banner.i + ')'};
+                    const bannerStyle = Object.assign({}, styles.img, bannerStyleImg);
+                    return <div key={banner.i} style={bannerStyle}></div>;
+                })}
+            </SwipeableViews>
         );
+
+        /*return (
+         <ReactSwipe className="carousel" swipeOptions={{continuous: true}}>
+         <div style={styles.img}><img src={banners[0].i} /></div>
+         <div style={styles.img}>PANE 2</div>
+         <div style={styles.img}>PANE 3</div>
+         </ReactSwipe>
+         );*/
     }
 }

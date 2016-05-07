@@ -30,7 +30,7 @@ class VerticalCol extends React.Component {
             src:"http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png",
             holder:'http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png',
             error:'../../img/u.png',
-            size:46,
+            size:40,
             fontSize:29,
             backgroundColor: '#fafafa',
             color: "#ffffff",

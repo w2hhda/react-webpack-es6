@@ -14,7 +14,7 @@ export default class CollapseRow extends React.Component {
 
     render() {
 
-        const transform = this.state.collapse ? 'rotateX(180deg)' : 'rotateX(0deg)';
+        const transform = this.state.collapse ? 'rotateX(0deg)' : 'rotateX(180deg)';
 
         const styles = {
             div : {
