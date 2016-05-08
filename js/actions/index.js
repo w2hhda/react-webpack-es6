@@ -1,67 +1,78 @@
 import fetch from 'isomorphic-fetch'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_REDDIT = 'SELECT_REDDIT'
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
-//选择新闻类型action
-export function selectReddit(reddit) {
+export const FETCH_REQUEST = 'FETCH_REQUEST'
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
+export const FETCH_FAILURE = 'FETCH_FAILURE'
+
+
+/**
+ * 请求数据
+ * @param lang
+ * @param version
+ * @returns {{type: string, lang: *, version: *}}
+ */
+export function requestCategory(lang, version) {
+
     return {
-        type: SELECT_REDDIT,
-        reddit
-    }
+        type: FETCH_REQUEST,
+        lang: lang,
+        version: version
+    };
 }
-//废弃新闻类型action
-export function invalidateReddit(reddit) {
+
+/***
+ * 数据请求成功
+ * @param lang
+ * @param version
+ * @param categories
+ * @returns {{type: string, lang: *, version: *, categories: *}}
+ */
+export function requestSuccess(lang, version, categories) {
+
     return {
-        type: INVALIDATE_REDDIT,
-        reddit
-    }
-}
-//开始获取新闻action
-function requestPosts(reddit) {
-    return {
-        type: REQUEST_POSTS,
-        reddit
-    }
-}
-//获取新闻成功的action
-function receivePosts(reddit, json) {
-    return {
-        type: RECEIVE_POSTS,
-        reddit: reddit,
-        posts: json.data.children.map(child => child.data),
-        receivedAt: Date.now()
+        type: FETCH_SUCCESS,
+        lang: lang,
+        version: version,
+        categories: categories
     }
 }
 
-//获取文章，先触发requestPosts开始获取action，完成后触发receivePosts获取成功的action
-function fetchPosts(reddit) {
+/**
+ * 数据请求失败
+ * @param lang
+ * @param version
+ * @param e
+ * @returns {{type: string, lang: *, version: *, exception: *}}
+ */
+export function requestFailure(lang, version, e) {
+    return {
+        type: FETCH_FAILURE,
+        lang: lang,
+        version: version,
+        exception: e
+    }
+}
+
+export function fetchCategory(params) {
     return dispatch => {
-        dispatch(requestPosts(reddit))
-        return fetch(`https://www.reddit.com/r/${reddit}.json`)
+        return dispatch(fetchs(params))
+    }
+}
+
+function fetchs(params) {
+    return dispatch => {
+        dispatch(requestCategory(params.lang, params.version))
+        return fetch(`../../json/data1.json`)
             .then(response => response.json())
-            .then(json => dispatch(receivePosts(reddit, json)))
+            .then(json => {
+                console.log("fetchCategory, json", json)
+                dispatch(requestSuccess(params.lang, params.version, json))
+            })
+            .catch(e => {
+                console.log("fetchCategory, error", e)
+                dispatch(requestFailure(params.lang, params.version, e))
+            })
     }
+
 }
 
-//是否需要获取文章
-function shouldFetchPosts(state, reddit) {
-    const posts = state.postsByReddit[reddit]
-    if (!posts) {
-        return true
-    }
-    if (posts.isFetching) {
-        return false
-    }
-    return posts.didInvalidate
-}
-
-//如果需要则开始获取文章
-export function fetchPostsIfNeeded(reddit) {
-    return (dispatch, getState) => {
-        if (shouldFetchPosts(getState(), reddit)) {
-            return dispatch(fetchPosts(reddit))
-        }
-    }
-}

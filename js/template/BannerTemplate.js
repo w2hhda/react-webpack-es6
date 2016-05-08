@@ -5,12 +5,7 @@ import Grid from '../component/Grid';
 import BannerRow from '../component/BannerRow';
 import DividerRow from '../component/DividerRow';
 
-class BannerServicesTemplate extends React.Component {
-
-
-    constructor() {
-        
-    }
+class BannerTemplate extends React.Component {
 
     render() {
         return (
@@ -22,4 +17,4 @@ class BannerServicesTemplate extends React.Component {
     }
 }
 
-export default BannerServicesTemplate;
+export default BannerTemplate;

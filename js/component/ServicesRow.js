@@ -52,7 +52,7 @@ export default class ServicesRow extends React.Component {
                         flexBasis : flexBasis,
                         tile : tile
                     };
-                    return <ServicesCol key={tile.id} {...props}></ServicesCol>
+                    return <ServicesCol key={tile.id} {...props}/>
                 })
             }
 
