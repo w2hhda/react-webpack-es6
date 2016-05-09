@@ -27,13 +27,14 @@ export function requestCategory(lang, version) {
  * @param categories
  * @returns {{type: string, lang: *, version: *, categories: *}}
  */
-export function requestSuccess(lang, version, categories) {
+export function requestSuccess(lang, version, json, rootIn) {
 
     return {
         type: FETCH_SUCCESS,
         lang: lang,
         version: version,
-        categories: categories
+        categorise: json,
+        rootIn:rootIn
     }
 }
 
@@ -66,7 +67,7 @@ function fetchs(params) {
             .then(response => response.json())
             .then(json => {
                 console.log("fetchCategory, json", json)
-                dispatch(requestSuccess(params.lang, params.version, json))
+                dispatch(requestSuccess(params.lang, params.version, json, 'server'))
             })
             .catch(e => {
                 console.log("fetchCategory, error", e)

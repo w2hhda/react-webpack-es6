@@ -3,46 +3,59 @@ import Images from './Images';
 
 class VerticalCol extends React.Component {
 
-	render() {
+    render() {
+        const item = this.props
+        const styles = this.getAllStyle();
+        const images = this.getImageStyle();
+        return (
+            <div style={styles.col}>
+                <Images {...images}/>
+                <a style={styles.a}>{item.title}</a>
+            </div>
+        )
+    }
 
-		const styles={
-			col:{
-				display:'flex',
-				flexDirection:'column',
-				flexWrap: 'nowrap',
-				justifyContent: 'center',
-				alignItems: 'center',
-				flexBasis:'25%',
-				height:86,
-				paddingTop:3,
-			},
-
-			a:{
-				marginTop:5,
-				fontSize: 12,
-				color: '#7d7d7d',
-			}
-		};
-
-		const imgProps = {
-            letter:'A',
-            circle:true,
-            src:"http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png",
-            holder:'http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png',
-            error:'../../img/u.png',
-            size:40,
-            fontSize:29,
+    getImageStyle() {
+        const item = this.props
+        const letter = item.title.charAt(0);
+        return {
+            letter: letter,
+            circle: true,
+            src: '../../' + item.icon,
+            holder: '../../' + item.icon,
+            error: '../../images/u.png',
+            size: 40,
+            fontSize: 29,
             backgroundColor: '#fafafa',
             color: "#ffffff",
-        };
+        }
+    }
 
-		return (
-			<div style={styles.col}>
-				<Images {...imgProps}/>
-				<a style={styles.a}>火车机票</a>
-			</div>
-		);
-	}
+    getAllStyle() {
+
+        const drawablePadding = this.props.drawablePadding || 0;
+
+        return {
+            col: {
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'nowrap',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexBasis: '25%',
+                height: 68,
+                order: -this.props.weight,
+                marginTop:drawablePadding
+            },
+
+            a: {
+                fontSize: 12,
+                paddingTop: drawablePadding,
+                paddingBottom: drawablePadding,
+                color: '#7d7d7d',
+            }
+        }
+    }
 
 }
 

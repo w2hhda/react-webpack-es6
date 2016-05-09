@@ -1,6 +1,5 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import ReactSwipe from 'react-swipe';
 
 export default class BannerRow extends React.Component {
 
@@ -26,7 +25,7 @@ export default class BannerRow extends React.Component {
         };
 
         const banners = [
-            {i: 'http://b0.box.bdimg.com/searchbox/image/cmsuploader/20160430/1461979570197280.jpg'},
+            {i: 'http://b0.box.bdimg.com/searchbox/images/cmsuploader/20160430/1461979570197280.jpg'},
             {i: 'http://bcscdn.baidu.com/browserservice/boxapp/8c/8c865d05bc72bf052a2a02324bdb673e.jpg'},
             {i: 'http://bcscdn.baidu.com/browserservice/boxapp/03/034185cf7d08bf9c67e4a7c71df7fad0.jpg'}
         ];
@@ -48,9 +47,9 @@ export default class BannerRow extends React.Component {
 
         /*return (
          <ReactSwipe className="carousel" swipeOptions={{continuous: true}}>
-         <div style={styles.img}><img src={banners[0].i} /></div>
-         <div style={styles.img}>PANE 2</div>
-         <div style={styles.img}>PANE 3</div>
+         <div style={styles.images}><images src={banners[0].i} /></div>
+         <div style={styles.images}>PANE 2</div>
+         <div style={styles.images}>PANE 3</div>
          </ReactSwipe>
          );*/
     }

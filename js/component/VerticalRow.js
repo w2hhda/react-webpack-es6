@@ -32,6 +32,8 @@ class VerticalRow extends React.Component {
                 flexDirection: 'column',
                 flexWrap: 'nowrap',
                 width: '100%',
+                paddingTop: 15,
+                paddingBottom: hasCollapseRow ? 0 : 15
             },
 
             row: {
@@ -56,7 +58,7 @@ class VerticalRow extends React.Component {
         return (
             <div style={styles.container}>
                 <div style={styles.row}>{show}</div>
-                <div style={styles.collapse}><CollapseRow {...collapseProps}></CollapseRow></div>
+                <div style={styles.collapse}><CollapseRow {...collapseProps}/></div>
             </div>
         );
     }

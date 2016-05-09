@@ -14,6 +14,7 @@ class Grid extends React.Component {
 
 		const outStyle = {
 			height : this.props.height,
+			order  : this.props.order
 		};
 
 		const allStyle = Object.assign({}, outStyle, styles.grid);

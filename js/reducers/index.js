@@ -1,31 +1,23 @@
-import { combineReducers } from 'redux'
-import {FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE } from '../actions'
+import {combineReducers} from 'redux'
+import {FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE} from '../actions'
 
-function category(state = {isFetching:false, categorise:[], lang:1}, action) {
+function category(state = {isFetching: false, categorise: [], lang: 1}, action) {
 
-    console.log("action log", action.type)
+    console.log("action log", action.type, action)
 
     switch (action.type) {
         case FETCH_REQUEST :
             return Object.assign({}, state, {
-                isFetching: true,
-                lang : action.lang,
-                version : action.version
             })
         case FETCH_SUCCESS :
-
-            const nextState = Object.assign({}, state, {
-                isFetching: false,
+            return Object.assign({}, state, {
                 categorise: action.categorise,
-                lang : action.lang,
-                version : action.version
-            });
-            return action
+            })
         case FETCH_FAILURE :
             return Object.assign({}, state, {
                 isFetching: false,
-                lang : action.lang,
-                version : action.version,
+                lang: action.lang,
+                version: action.version,
                 exception: action.exception
             })
         default:

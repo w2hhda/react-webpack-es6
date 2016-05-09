@@ -40,7 +40,7 @@ export default class VipCol extends React.Component {
             circle: true,
             src: "http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png",
             holder: 'http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png',
-            error: '../../img/u.png',
+            error: '../../images/u.png',
             size: 40,
             fontSize: 29,
             backgroundColor: '#fafafa',

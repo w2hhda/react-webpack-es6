@@ -24,7 +24,6 @@ class Image extends React.Component {
         const prop = this.props;
         const states = this.state;
 
-
         console.log("====> %s", states.letterDisplay);
 
         const styles = {

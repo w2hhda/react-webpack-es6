@@ -19,7 +19,7 @@ export default class CollapseRow extends React.Component {
         const styles = {
             div : {
                 width:'100%',
-                height:30,
+                height:35,
                 display:'flex',
                 alignItems:'center',
                 justifyContent:'center'
@@ -33,7 +33,7 @@ export default class CollapseRow extends React.Component {
 
         return (
             <div style={styles.div} onClick={e => this.handleClick(e)}>
-                <img style={styles.img} src={'../../img/a.png'}/>
+                <img style={styles.img} src={'../../images/a.png'}/>
             </div>
         );
     }
