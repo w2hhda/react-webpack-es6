@@ -23,7 +23,7 @@ class VerticalCol extends React.Component {
             circle: true,
             src: '../../' + item.icon,
             holder: '../../' + item.icon,
-            error: '../../images/u.png',
+            error: '../../images/space.png',
             size: 40,
             fontSize: 29,
             backgroundColor: '#fafafa',

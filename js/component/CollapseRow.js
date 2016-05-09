@@ -33,7 +33,7 @@ export default class CollapseRow extends React.Component {
 
         return (
             <div style={styles.div} onClick={e => this.handleClick(e)}>
-                <img style={styles.img} src={'../../images/a.png'}/>
+                <img style={styles.img} src={'../../images/alow.png'}/>
             </div>
         );
     }

@@ -9,20 +9,12 @@ class App extends Component {
 
     constructor(props) {
         super(props)
-        this.handleRefreshClick = this.handleRefreshClick.bind(this)
     }
 
     componentDidMount() {
         console.log("App componentDidMount");
-        const {dispatch} = this.props
-        dispatch(fetchCategory({lang: 1, version: 2}))
-    }
-
-    handleRefreshClick(e) {
-        e.preventDefault()
-        console.log("========handleRefreshClick===> ");
-        const {dispatch} = this.props
-        dispatch(fetchCategory({lang: 1, version: 2}))
+        const {fetchCategory,language, version} = this.props
+        fetchCategory({language: language, version: version})
     }
 
     componentWillReceiveProps(nextProps) {
@@ -30,11 +22,8 @@ class App extends Component {
     }
 
     render() {
-
         const categorise = this.props.categorise
-
         console.log("App render", categorise);
-
         return (
             <div style={this.getAppStyle()}>
                 {
@@ -58,15 +47,31 @@ class App extends Component {
 
 App.propTypes = {
     categorise: PropTypes.array.isRequired,
+    dataSource: PropTypes.string.isRequired,
+    language  : PropTypes.number.isRequired,
+    version   : PropTypes.number.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    dispatch  : PropTypes.func.isRequired,
+    fetchCategory: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
-
+const mapStateToProps = (state) => {
     const {category} = state
-
     return {
-        categorise: category.categorise || []
+        categorise: category.categorise || [],
+        dataSource: category.dataSource || 'file',
+        language  : category.language || 1,
+        version   : category.version || 14,
+        isFetching: category.isFetching || false
     }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchCategory: (params) => {
+            dispatch(fetchCategory(params))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -3,11 +3,12 @@ var webpack = require('webpack');
 module.exports = {
     entry: [
         'webpack/hot/only-dev-server',
-        "./js/index.js"
+        "./index.js"
     ],
     output: {
         path: './build',
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: '/output/'
     },
     module: {
         loaders: [
@@ -16,8 +17,7 @@ module.exports = {
             {test: /\.png$/, loader: "url?limit=8192"},
             {
                 test: /\.css$/,
-                loader: 'style!css?modules',
-                include: /flexboxgrid/,
+                loader: 'style!css?modules',                               
             }
         ]
     },
@@ -25,6 +25,18 @@ module.exports = {
         extensions: ['', '.js', '.json', 'png']
     },
     plugins: [
-        new webpack.NoErrorsPlugin()
-    ]
+        new webpack.NoErrorsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        }),
+        //new webpack.optimize.CommonsChunkPlugin('common.js')
+
+]
 };

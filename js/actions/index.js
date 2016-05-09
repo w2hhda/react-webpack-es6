@@ -62,16 +62,16 @@ export function fetchCategory(params) {
 
 function fetchs(params) {
     return dispatch => {
-        dispatch(requestCategory(params.lang, params.version))
+        dispatch(requestCategory(params.language, params.version))
         return fetch(`../../json/data1.json`)
             .then(response => response.json())
             .then(json => {
                 console.log("fetchCategory, json", json)
-                dispatch(requestSuccess(params.lang, params.version, json, 'server'))
+                dispatch(requestSuccess(params.language, params.version, json, 'server'))
             })
             .catch(e => {
                 console.log("fetchCategory, error", e)
-                dispatch(requestFailure(params.lang, params.version, e))
+                dispatch(requestFailure(params.language, params.version, e))
             })
     }
 

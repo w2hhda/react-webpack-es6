@@ -37,7 +37,7 @@ class ServicesCol extends React.Component {
             circle: true,
             src: "http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png",
             holder: 'http://yp.res.meizu.com/resource/mp/ic_chongliuliang.png',
-            error: '../../images/u.png',
+            error: '../../images/space.png',
             size: 43,
             fontSize: 29,
             backgroundColor: '#fafafa',

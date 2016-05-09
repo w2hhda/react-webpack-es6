@@ -38,7 +38,7 @@ class Image extends React.Component {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderRadius: (prop.size / 2),
+                borderRadius: (prop.size / 2)
             },
 
             text: {
@@ -57,8 +57,8 @@ class Image extends React.Component {
 
         return (
             <div style={styles.container}>
-                <a style={styles.text} ref="a">{this.props.letter}</a>
-                <img style={styles.image} src={states.avatarUrl} ref="img" onError={()=>this.handleError()}/>
+                <a style={styles.text}>{this.props.letter}</a>
+                <img style={styles.image} src={states.avatarUrl} onError={()=>this.handleError()}/>
             </div>
         );
 
